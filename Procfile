@@ -1,1 +1,1 @@
-worker: python gacha_bot.py
+worker: python3 gacha_bot.py
