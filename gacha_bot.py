@@ -15,7 +15,11 @@ load_dotenv(dotenv_path=env_path)
 
 logging.basicConfig(level=logging.INFO)
 
-client = commands.Bot(command_prefix="!")
+intents = discord.Intents.default()
+intents.message_content = True
+
+client = commands.Bot(command_prefix="!", intents = intents)
+print("Booting up...")
 
 def getdata(url): 
     r = requests.get(url) 
@@ -37,7 +41,12 @@ def Hash(Number, Count):
         Bucket = Hash(Number, Count)
     
     return Bucket    
-        
+
+@client.event
+async def on_ready():  # when the bot is ready
+    await client.change_presence(activity=discord.Game('Suffering'))
+    print(f'{client.user} has connected to Discord!')
+
 
 
 @client.command(
@@ -311,4 +320,4 @@ async def c(ctx, name):
             await ctx.send(ImgURL)
     
 
-client.run(getenv("DISCORD_BOT_TOKEN"))
+client.run("ODMyODIwMjUwNzI1OTc0MTM3.GnPkPr.UuZkXdCDhGqTV11eDUTHdh5wT6gPX052s8SY9o")
